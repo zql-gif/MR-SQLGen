@@ -20,18 +20,6 @@
               "icon": "lucide-file",
               "title": "基于大模型的Python代码生成的Dataset和Prompt组成元素"
             }
-          },
-          {
-            "id": "aa561dd7c68cdf94",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "assets/Research/RepoEval_fig3.png"
-              },
-              "icon": "lucide-image",
-              "title": "RepoEval_fig3"
-            }
           }
         ]
       }
@@ -182,18 +170,19 @@
   },
   "active": "1b679a3e43fdf5a0",
   "lastOpenFiles": [
-    "assets/Research/RepoEval_fig3.png",
+    "assets/Research/BigCodeBench_prompt.png",
+    "assets/ODEX_prompt.png",
+    "assets/NaturalCodeBench_overview.png",
+    "assets/NaturalCodeBench_fig4.png",
+    "assets/fig16_PipelineOfLLM-as-a-judge.png",
+    "assets/fig3_HUMANEVALPACK_overview.png",
+    "assets/fig2_CONCODE.png",
+    "assets/CrossCodeEval_fig3.png",
+    "assets/ClassEval_fig2.png",
+    "assets/ClassEval_DEP.png",
+    "assets/BigCodeBench_prompt.png",
     "Research/基于大模型的Python代码生成的Dataset和Prompt组成元素.md",
-    "assets/Research/Repobench_fig1.png",
     "Research/LLM-as-a-Judge的LLM Code Generation方法.md",
-    "assets/Research/CrossCodeEval_fig3.png",
-    "assets/Research/NaturalCodeBench_fig4.png",
-    "assets/Research/NaturalCodeBench_overview.png",
-    "assets/Research/ClassEval_DEP.png",
-    "assets/Research/pass_k.png",
-    "assets/Research/ClassEval_fig2.png",
-    "assets/Research/ODEX_prompt.png",
-    "assets/Pasted image 20250218190513.png",
     "MR-SQLGen Overview.md",
     "Research/A Survey on Large Language Models for Code Generation.md",
     "Research/LLM-as-a-Judge的LLM.md",

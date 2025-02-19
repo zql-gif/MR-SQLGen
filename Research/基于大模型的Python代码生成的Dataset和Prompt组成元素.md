@@ -98,7 +98,7 @@ write_jsonl("samples.jsonl", samples)
 * Kulal等人（2019年）使用pass@k指标评估功能正确性，**每个问题生成k个代码样本，如果任何样本通过单元测试，则认为问题已解决**，并报告总分数。
 * **一次实验随机性太大，需要多次实验求平均值。pass@k需要对每一个测试问题重复实验t次，并且每次都生成k个代码，最后计算平均通过率。假如重复实验100次来估计pass@100，就需要生成 100 x 100=10000个代码，这样的计算量是难以接受的。而t越小，估计的pass@k就越不准（方差越大）。**
 **2. pass@k公式理解**
-* ![pass_k.png](assets/Research/pass_k.png)
+* ![pass_k.png](../assets/pass_k.png)
 * 解释：`Pass@k` 的计算是基于从 `n` 个样本中选择 `k` 个样本的组合概率，减去从错误样本中选择 `k` 个的概率。最终结果越接近 1，表示模型生成的正确样本越多。
 * 无偏估计：为了应对高采样方差，使用了无偏估计方法来计算 `Pass@k`，这有助于确保评估结果的稳定性和可靠性。
 - 参数解释
@@ -189,7 +189,7 @@ write_jsonl("samples.jsonl", samples)
 * **在输入的最前面添加一个明确的指令（即instruction），解释模型应该做什么。**
 * **prompt组成：instruction + docstring**
 
-![fig3_HUMANEVALPACK_overview.png](assets/Research/fig3_HUMANEVALPACK_overview.png)
+![fig3_HUMANEVALPACK_overview.png](../assets/fig3_HUMANEVALPACK_overview.png)
 ### 评估逻辑
 同HumanEval
 ### 评估指标
@@ -277,7 +277,7 @@ mbpp-sanitized:
 	* 检查模型是否能够产生与实际执行代码完全相同的结果。
 	* 使用**贪心解码**（温度设置为0.0）生成一个最可能的单一输出，**并将其与执行代码生成的结果字符串进行比较。**
 * 原文没有提语义正确性评估的详细标准。根据下图推测，应该是生成的n个代码样本中有通过的，即认为这条problem解决了。
-![table2_MBPP.png](assets/Research/table2_MBPP.png)
+![table2_MBPP.png](../assets/table2_MBPP.png)
 
 ## 1.5 MBPP+ [162]
 * 简介：MBPP+ 在 MBPP [17] 的基础上，**通过去除不规范的问题和修正实现错误的问题进行了增强。MBPP+ 的测试规模也增加了 35 倍，** 用于测试集的扩展。  
@@ -455,7 +455,7 @@ boolean function () { return isParsed ; }
 * 论文评估了基于上下文的**代码生成任务**在测试集和开发集上的结果。
 	* 参考代码和生成代码之间的精确匹配 （Exact match accuracy）
 	* BLEU score
-![fig2_CONCODE.png](assets/Research/fig2_CONCODE.png)
+![fig2_CONCODE.png](../assets/fig2_CONCODE.png)
 
 
 ## 1.9 ODEX [273]
@@ -503,7 +503,7 @@ boolean function () { return isParsed ; }
 
 
 **prompt的组成如下图所示（原文提到，这一prompt构建方式是借鉴前面的1.1 HumanEval的）：将函数上下文和文档字符串拼接在一起来构造提示。文档字符串包含了 prompt（其实是上述的函数签名），suffix，NL intent和可选的单元测试。**
-![ODEX_prompt.png](assets/Research/ODEX_prompt.png)
+![ODEX_prompt.png](../assets/ODEX_prompt.png)
 
 ### 评估逻辑及评估指标
 文章指出，同1.1 HumanEval的评估方式，即pass@k
@@ -750,7 +750,7 @@ def task_func(numbers=list(range(1, 3))):
 	- **examples (string, optional)**：用于提示任务解决方案的交互式 Python 示例。
 - **libs (string)**：任务解决方案中可以使用的库。
 
-![BigCodeBench_prompt.png](assets/Research/BigCodeBench_prompt.png)
+![BigCodeBench_prompt.png](../assets/BigCodeBench_prompt.png)
 
 ### 评估逻辑
 * Pass@1 是评估整体表现的好指标。
@@ -778,7 +778,7 @@ def task_func(numbers=list(range(1, 3))):
 	- **类的骨架，包括我们在类级别编码任务中的所有输入描述。**
 	- **是prompt的一部分，不过相比其他datatset，是以类为粒度的代码生成任务。**
 	- **skeleton=dependency+class constructor+method functionality+Method Parameter+Method Reture Value+example**
-![ClassEval_fig2.png](assets/Research/ClassEval_fig2.png)
+![ClassEval_fig2.png](../assets/ClassEval_fig2.png)
 - **test**：整个类的所有测试用例。
 - **solution_code**：每个任务的真实类级别代码。
 
@@ -820,7 +820,7 @@ Instruction-C:Please complete the method${MethodName} within the following class
 * **DEP**
 	* 目的：衡量模型生成与上下文相关代码的能力（即调用类中声明的其他方法，或类中的字段）。
 	* 定义：该指标计算每个方法生成的依赖项的百分比，与标准解决方案方法中实际的依赖项数量进行比较。
-	* ![ClassEval_DEP.png](assets/Research/ClassEval_DEP.png)
+	* ![ClassEval_DEP.png](../assets/ClassEval_DEP.png)
 	* 方法依赖项 **DEP(M)** 
 	* 字段依赖项 **DEP(F)**
 	* 𝐺𝑖(𝑀/𝐹) 是第 𝑖 个方法中生成的 方法/字段 依赖项的数量
@@ -835,7 +835,7 @@ Instruction-C:Please complete the method${MethodName} within the following class
 	* [THUDM/NaturalCodeBench: NaturalCodeBench (Findings of ACL 2024)](https://github.com/THUDM/NaturalCodeBench)
 ### 规模
 * size：402，自动化获取及过滤高质量nl问题+semi-automated solution and test cases generation（LLM+human-annotated）
-	* ![NaturalCodeBench_overview.png](assets/Research/NaturalCodeBench_overview.png)
+	* ![NaturalCodeBench_overview.png](../assets/NaturalCodeBench_overview.png)
 * 问题领域：Front-End, Algorithm, Data Science, Artificial Intelligence, Software Engineering, System Administration（前端、算法与数据结构、数据科学、人工智能、软件工程和系统管理）
 * 问题领域的详细占比，参考[THUDM/NaturalCodeBench: NaturalCodeBench (Findings of ACL 2024)](https://github.com/THUDM/NaturalCodeBench)
 * PL：Python，Java(中英文双语)
@@ -848,7 +848,7 @@ Instruction-C:Please complete the method${MethodName} within the following class
 - **reference_solution**（字符串）：解决问题的参考答案。
 - **classification**（字符串）：问题所属的领域。
 
-![NaturalCodeBench_fig4.png](assets/Research/NaturalCodeBench_fig4.png)
+![NaturalCodeBench_fig4.png](../assets/NaturalCodeBench_fig4.png)
 ### 评估逻辑及评估指标
 * pass@k：生成代码的功能正确性
 	* 贪心搜索解码，温度为0：k = 1
@@ -876,7 +876,7 @@ Instruction-C:Please complete the method${MethodName} within the following class
 * PL：Python, Java
 ### 单条数据组成
 prompt的组成：没找到相关数据集
-![RepoEval_fig3.png](assets/Research/RepoEval_fig3.png)
+![RepoEval_fig3.png](../assets/RepoEval_fig3.png)
 * RepoCoder 框架从代码库中检索出最相关的代码示例，记作 Cret，并将其与未完成的代码 X 连接起来。
 * 检索到的代码片段根据它们与查询的相似度得分按升序排列。每个代码片段都附有其原始文件路径，且提示中包含的最大代码片段数量，记作 K，取决于可用的提示长度。
 
@@ -965,7 +965,7 @@ prompt的组成
 - **当前文件提示（in-file prompt）**：包含当前文件的路径、导入语句和裁剪的代码。
 - **令牌数控制**：根据模型的最大令牌数限制，可能对跨文件提示进行截断。
 - **空行规范化**：确保没有多余的空行。
-![Repobench_fig1.png](assets/Research/Repobench_fig1.png)
+![Repobench_fig1.png](../assets/Repobench_fig1.png)
 ### 评估逻辑
 
 ### 评估指标
@@ -1031,10 +1031,10 @@ prompt的组成
 
 单条这段JSON数据包含了几个键（key）以及它们对应的内容。
 8. **prompt**: 这是一个字符串，包含了用于生成Python代码的提示文本。它描述了一个函数和其行为的详细要求，并提供了如何处理代码片段的指示。`prompt`字段内包含了用于代码生成的完整代码框架，和一些辅助性描述、设置等。
-![CrossCodeEval_fig3.png](assets/Research/CrossCodeEval_fig3.png)
-9. **groundtruth**: 参考答案的代码部分。这部分代码代表着预期的正确行为。
-10. **right_context**: 这是字符串类型，表示在生成代码时，提供的正确的参考上下文信息。在这里，`right_context`包含了代码生成过程中紧接着`groundtruth`后续的部分，帮助模型理解后续的代码逻辑。
-11. **metadata**: 这是一个对象，包含了以下子字段：
+![CrossCodeEval_fig3.png](../assets/CrossCodeEval_fig3.png)
+1. **groundtruth**: 参考答案的代码部分。这部分代码代表着预期的正确行为。
+2. **right_context**: 这是字符串类型，表示在生成代码时，提供的正确的参考上下文信息。在这里，`right_context`包含了代码生成过程中紧接着`groundtruth`后续的部分，帮助模型理解后续的代码逻辑。
+3. **metadata**: 这是一个对象，包含了以下子字段：
     - **task_id**: 任务的唯一标识符，用于标识这个特定的代码生成任务。
     - **repository**: 与此任务相关的代码仓库名称。
     - **file**: 执行代码生成任务的具体文件名。
